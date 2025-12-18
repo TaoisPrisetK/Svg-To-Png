@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Unify borders to a subtle dim gray with transparency */
+    --border: 240 3% 20% / 0.22;
+    --input: 240 3% 20% / 0.22;
+    --ring: 240 4.9% 83.9%;
+
+    --radius: 12px;
+
+    /* Global window background tuning */
+    --glass-alpha: 0.34; /* smaller = more transparent */
+    --glass-blur: 28px;  /* bigger = stronger gaussian blur */
+    --glass-saturate: 125%;
+    --glass-contrast: 108%;
+
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+      'Apple Color Emoji', 'Segoe UI Emoji';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html,
+  body {
+    /* Prevent flash during reload: keep base tint consistent with .liquid-bg */
+    background: rgba(0, 0, 0, var(--glass-alpha));
+    background-color: rgba(0, 0, 0, var(--glass-alpha));
+  }
+
+  /* Allow scrolling but hide visible scrollbars */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  body {
+    @apply text-foreground;
+    margin: 0;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    background: rgba(0, 0, 0, var(--glass-alpha));
+    background-color: rgba(0, 0, 0, var(--glass-alpha));
+  }
+
+  input,
+  textarea {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+/* iOS-style liquid glass background (app-wide) */
+.liquid-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* Adjust overall UI background transparency here */
+  background: rgba(0, 0, 0, var(--glass-alpha));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
+}
+
+.liquid-bg::before {
+  content: "";
+  position: absolute;
+  inset: -80px;
+  z-index: -1;
+
+  /* Organic gray mist blobs (softer + less banding) */
+  background:
+    radial-gradient(1200px 900px at 18% 22%, rgba(185,185,185,0.11) 0%, rgba(185,185,185,0.045) 55%, rgba(185,185,185,0) 88%),
+    radial-gradient(1100px 820px at 78% 18%, rgba(165,165,165,0.10) 0%, rgba(165,165,165,0.040) 58%, rgba(165,165,165,0) 90%),
+    radial-gradient(1000px 860px at 62% 88%, rgba(200,200,200,0.09) 0%, rgba(200,200,200,0.035) 60%, rgba(200,200,200,0) 92%),
+    radial-gradient(780px 640px at 28% 82%, rgba(150,150,150,0.07) 0%, rgba(150,150,150,0.028) 62%, rgba(150,150,150,0) 94%),
+    radial-gradient(620px 520px at 90% 64%, rgba(190,190,190,0.06) 0%, rgba(190,190,190,0.022) 64%, rgba(190,190,190,0) 95%);
+
+  filter: blur(46px) saturate(112%) contrast(106%);
+  -webkit-filter: blur(46px) saturate(112%) contrast(106%);
+  opacity: 0.58;
+  /* Keep static for stability (no flashing/pulsing) */
+  animation: none;
+}
+
+.liquid-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    radial-gradient(1200px 800px at 50% 45%, rgba(0,0,0,0.06), rgba(0,0,0,0.42) 78%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.02),
+      rgba(255,255,255,0.02) 1px,
+      rgba(0,0,0,0.02) 2px,
+      rgba(0,0,0,0.02) 3px
+    );
+  opacity: 0.16;
+  mix-blend-mode: normal;
+  pointer-events: none;
+}
+
+/* Disable background blobs */
+.liquid-bg::before,
+.liquid-bg::after {
+  content: none !important;
+  display: none !important;
+}
+
+@keyframes liquid-float {
+  0% { transform: translate3d(-18px, -14px, 0) scale(1.03); }
+  100% { transform: translate3d(18px, 14px, 0) scale(1.06); }
+}
+
+
