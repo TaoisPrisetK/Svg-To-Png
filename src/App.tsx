@@ -3,13 +3,15 @@ import { listen } from '@tauri-apps/api/event'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrentWindow } from '@tauri-apps/api/window'
 import { open } from '@tauri-apps/plugin-dialog'
-import { Folder, Image as ImageIcon, Link2, Link2Off, Play, Settings2, Wand2, XCircle } from 'lucide-react'
+import { Link2, Link2Off, Play, Settings2, Wand2, XCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import AppIcon from '@/assets/AppIcon.svg'
+import { HoverFolderIcon } from '@/components/icons/HoverFolderIcon'
+import { HoverImageMoonIcon } from '@/components/icons/HoverImageMoonIcon'
 
 type InputMode = 'file' | 'folder'
 type SizeMode = 'scale' | 'exact'
@@ -164,6 +166,9 @@ function isHexColor(s: string) {
 }
 
 export default function App() {
+  const btnIconWiggle =
+    'transition-transform will-change-transform group-hover:animate-[icon-wiggle_0.52s_cubic-bezier(0.16,1,0.3,1)_1]'
+
   const [inputMode, setInputMode] = useState<InputMode>('file')
   const [inputPath, setInputPath] = useState<string>('')
   const [inputPaths, setInputPaths] = useState<string[]>([])
@@ -569,7 +574,7 @@ export default function App() {
                 await refreshSelectionMeta('', 'file')
               }}
             >
-              <ImageIcon className="h-6 w-6" />
+              <HoverImageMoonIcon className="h-6 w-6" open={inputMode === 'file'} />
               File
             </Button>
             <Button
@@ -585,7 +590,7 @@ export default function App() {
                 await refreshSelectionMeta('', 'folder')
               }}
             >
-              <Folder className="h-6 w-6" />
+              <HoverFolderIcon className="h-6 w-6" open={inputMode === 'folder'} />
               Folder
             </Button>
           </div>
@@ -596,7 +601,7 @@ export default function App() {
             <Card className="h-full flex flex-col bg-white/[0.03]">
               <CardHeader className="pb-12">
               <CardTitle className="flex items-center gap-2">
-                <Folder className="h-5 w-5 opacity-70" />
+                <HoverFolderIcon className="h-5 w-5 opacity-70" />
                 Paths
               </CardTitle>
                 <CardDescription>Pick input and optional output folder</CardDescription>
@@ -656,7 +661,7 @@ export default function App() {
             <Card className="h-full flex flex-col bg-white/[0.03]">
               <CardHeader className="pb-12">
                 <CardTitle className="flex items-center gap-2">
-                <Settings2 className="h-5 w-5 opacity-70" />
+                <Settings2 className={`h-5 w-5 opacity-70 ${btnIconWiggle}`} />
                   Options
                 </CardTitle>
                 <CardDescription>Resize and background options for PNG output</CardDescription>
@@ -790,7 +795,11 @@ export default function App() {
                       disabled={!sourceSize}
                       title={lockAspect ? 'Aspect locked (auto link W/H)' : 'Aspect unlocked (center crop)'}
                     >
-                      {lockAspect ? <Link2 className="h-4 w-4" /> : <Link2Off className="h-4 w-4" />}
+                      {lockAspect ? (
+                        <Link2 className={`h-4 w-4 ${btnIconWiggle}`} />
+                      ) : (
+                        <Link2Off className={`h-4 w-4 ${btnIconWiggle}`} />
+                      )}
                     </Button>
                   </div>
 
@@ -826,7 +835,7 @@ export default function App() {
 
               {sizeValidationError ? (
                 <div className="flex items-start gap-2 rounded-md border bg-white/5 p-3 text-sm">
-                  <XCircle className="mt-0.5 h-4 w-4" style={{ color: highlightColor }} />
+                  <XCircle className={`mt-0.5 h-4 w-4 ${btnIconWiggle}`} style={{ color: highlightColor }} />
                   <div style={{ color: highlightColor }} className="font-semibold">
                     {sizeValidationError}
                   </div>
@@ -848,7 +857,7 @@ export default function App() {
           <CardHeader className="flex-row items-start justify-between gap-6 space-y-0">
             <div className="min-w-0 flex flex-col space-y-1.5">
               <CardTitle className="flex items-center gap-2">
-                <Play className="h-5 w-5 opacity-70" />
+                <Play className={`h-5 w-5 opacity-70 ${btnIconWiggle}`} />
                 Run
               </CardTitle>
               <CardDescription>Convert locally, progress and results appear below</CardDescription>
@@ -868,7 +877,7 @@ export default function App() {
               disabled={!canConvert}
               onClick={startConvert}
             >
-              <Wand2 className="h-5 w-5" />
+              <Wand2 className={`h-5 w-5 ${btnIconWiggle}`} />
               {isConverting ? 'Converting…' : 'Convert'}
                 </Button>
 

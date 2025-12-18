@@ -158,4 +158,14 @@
   100% { transform: translate3d(18px, 14px, 0) scale(1.06); }
 }
 
+/* Fun hover wiggle for button icons */
+@keyframes icon-wiggle {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  18%  { transform: translate3d(0, -1px, 0) rotate(-12deg) scale(1.06); }
+  36%  { transform: translate3d(0, 0, 0) rotate(10deg) scale(1.06); }
+  54%  { transform: translate3d(0, -1px, 0) rotate(-8deg) scale(1.05); }
+  72%  { transform: translate3d(0, 0, 0) rotate(6deg) scale(1.03); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
 
