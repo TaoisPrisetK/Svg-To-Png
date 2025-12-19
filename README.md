@@ -13,7 +13,9 @@ No uploads — your files never leave your computer.
 - **Progress + results list**
 
 ### Download (macOS)
-Go to **GitHub Releases** and download the latest `.dmg`.
+**Direct download:** go to [Releases (latest)](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest) and download the latest `.dmg`.
+
+If you prefer a specific version, open the [Releases page](https://github.com/TaoisPrisetK/Svg-To-Png/releases) and pick a tag.
 
 ### Development
 ```bash
