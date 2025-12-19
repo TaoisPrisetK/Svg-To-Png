@@ -13,7 +13,7 @@ No uploads — your files never leave your computer.
 - **Progress + results list**
 
 ### Screenshot
-![Tool SVG-To-PNG UI](docs/screenshot.png)
+![Tool SVG-To-PNG UI](docs/preview.png)
 
 ### Download (macOS)
 | Platform | File | Direct download |
