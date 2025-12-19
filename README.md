@@ -13,9 +13,10 @@ No uploads — your files never leave your computer.
 - **Progress + results list**
 
 ### Download (macOS)
-**Direct download:** go to [Releases (latest)](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest) and download the latest `.dmg`.
+**Direct download (Apple Silicon / aarch64):**
+[Tool.SVG-To-PNG_0.1.0_aarch64.dmg](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/Tool.SVG-To-PNG_0.1.0_aarch64.dmg)
 
-If you prefer a specific version, open the [Releases page](https://github.com/TaoisPrisetK/Svg-To-Png/releases) and pick a tag.
+If the direct link ever returns 404, use: [Releases (latest)](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest)
 
 ### Development
 ```bash
