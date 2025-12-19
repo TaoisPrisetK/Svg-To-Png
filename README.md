@@ -12,6 +12,9 @@ No uploads — your files never leave your computer.
 - **Optional background color** (leave empty for transparent PNG)
 - **Progress + results list**
 
+### Screenshot
+![Tool SVG-To-PNG UI](docs/screenshot.png)
+
 ### Download (macOS)
 | Platform | File | Direct download |
 | --- | --- | --- |
