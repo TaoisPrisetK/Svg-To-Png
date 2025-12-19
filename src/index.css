@@ -35,11 +35,10 @@
 
     --radius: 12px;
 
-    /* Global window background tuning */
-    --glass-alpha: 0.34; /* smaller = more transparent */
-    --glass-blur: 28px; /* bigger = stronger gaussian blur */
-    --glass-saturate: 125%;
-    --glass-contrast: 108%;
+    /* App background (single source of truth) */
+    --app-bg:
+      radial-gradient(900px circle at 86% 14%, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0) 62%),
+      linear-gradient(45deg, #1e4f9e 0%, #241b6a 36%, #010005 82%, #010005 100%);
 
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
       'Apple Color Emoji', 'Segoe UI Emoji';
@@ -57,8 +56,7 @@
   html,
   body {
     /* Prevent flash during reload */
-    background: rgba(0, 0, 0, var(--glass-alpha));
-    background-color: rgba(0, 0, 0, var(--glass-alpha));
+    background: var(--app-bg);
   }
 
   /* Allow scrolling but hide visible scrollbars */
@@ -78,8 +76,8 @@
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
-    background: rgba(0, 0, 0, var(--glass-alpha));
-    background-color: rgba(0, 0, 0, var(--glass-alpha));
+    background: transparent;
+    background-color: transparent;
   }
 
   input,
@@ -98,10 +96,10 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: rgba(0, 0, 0, var(--glass-alpha));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
+  background: var(--app-bg);
 }
+
+/* NOTE: background overlays (grid/dividers/vignettes) intentionally removed to avoid any visible lines/borders */
 
 /* Fun hover wiggle for button icons */
 @keyframes icon-wiggle {
@@ -165,6 +163,80 @@
   transform-box: fill-box;
   transform-origin: center;
   animation: sparkle-pulse 1.5s linear infinite;
+}
+
+/* CTA pill button (matches recap-like style) */
+.cta-pill-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: visible;
+}
+
+/* Glow rendered OUTSIDE the button to avoid corner artifacts */
+.cta-pill-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  pointer-events: none;
+  border-radius: 12px;
+  background:
+    radial-gradient(closest-side, rgba(85, 178, 249, 0.18), rgba(85, 178, 249, 0) 72%),
+    radial-gradient(closest-side, rgba(36, 27, 106, 0.14), rgba(36, 27, 106, 0) 74%);
+  filter: blur(16px);
+  opacity: 0.45; /* overall glow strength (lighter) */
+}
+
+.cta-pill {
+  position: relative;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  color: rgba(255, 255, 255, 0.96);
+  background: linear-gradient(90deg, #55b2f9 0%, #1e4f9e 28%, #241b6a 72%, #0b1b4a 100%);
+  /* IMPORTANT: no box-shadow/border/ring on the button itself */
+  box-shadow: none !important;
+  border: 0 !important;
+  outline: none !important;
+  --tw-ring-width: 0 !important;
+  --tw-ring-offset-width: 0 !important;
+  background-clip: padding-box;
+}
+
+/* Plain CTA element to avoid Button base borders */
+.cta-plain {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 4rem; /* 64px matches h-16 */
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: inherit;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.cta-plain:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.cta-pill:hover {
+  opacity: 0.96;
+}
+
+.cta-pill:active {
+  opacity: 0.92;
+}
+
+.cta-pill:focus-visible {
+  outline: none !important;
+  --tw-ring-width: 0 !important;
+  --tw-ring-offset-width: 0 !important;
+  box-shadow: none !important;
 }
 
 

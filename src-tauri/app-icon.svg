@@ -1,0 +1,34 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- App icon for SVG → PNG (Tauri). Background matches the UI background (app-bg). -->
+  <defs>
+    <!-- UI background: linear-gradient(45deg, #1e4f9e 0%, #241b6a 36%, #010005 82%, #010005 100%) -->
+    <linearGradient id="ui_bg_linear" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1E4F9E" />
+      <stop offset="0.36" stop-color="#241B6A" />
+      <stop offset="0.82" stop-color="#010005" />
+      <stop offset="1" stop-color="#010005" />
+    </linearGradient>
+    <!-- UI background: radial-gradient(900px circle at 86% 14%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 62%) -->
+    <radialGradient id="ui_bg_radial" cx="881" cy="143" r="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.92" />
+      <stop offset="0.62" stop-color="#000000" stop-opacity="0" />
+      <stop offset="1" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="arrow" x1="438" y1="512" x2="610" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55B2F9" />
+      <stop offset="1" stop-color="#1E4F9E" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background (match UI) -->
+  <rect x="0" y="0" width="1024" height="1024" rx="232" fill="url(#ui_bg_linear)" />
+  <rect x="0" y="0" width="1024" height="1024" rx="232" fill="url(#ui_bg_radial)" />
+
+  <!-- Mark (two "files" + arrow) -->
+  <rect x="232" y="264" width="340" height="392" rx="112" fill="rgba(255,255,255,0.13)" stroke="rgba(255,255,255,0.62)" stroke-width="38" />
+  <rect x="452" y="384" width="340" height="392" rx="112" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.54)" stroke-width="38" />
+
+  <path d="M438 512H584" stroke="url(#arrow)" stroke-width="58" stroke-linecap="round" />
+  <path d="M552 432L642 512L552 592" stroke="url(#arrow)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+

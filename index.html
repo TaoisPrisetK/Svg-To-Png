@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SVG → PNG</title>
     <style>
-      :root {
-        /* Global window background tuning (more obvious) */
-        --glass-alpha: 0.34; /* smaller = more transparent */
-        --glass-blur: 28px;  /* bigger = stronger gaussian blur */
-        --glass-saturate: 125%;
-        --glass-contrast: 108%;
-      }
       html,
       body {
         height: 100%;
         width: 100%;
         /* Keep first paint consistent even before index.css (dev refresh) */
-        background: rgba(0, 0, 0, var(--glass-alpha));
-        background-color: rgba(0, 0, 0, var(--glass-alpha));
+        background:
+          radial-gradient(900px circle at 86% 14%, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0) 62%),
+          linear-gradient(45deg, #1e4f9e 0%, #241b6a 36%, #010005 82%, #010005 100%);
       }
       body {
         margin: 0;
@@ -26,16 +20,6 @@
       #root {
         height: 100%;
         width: 100%;
-      }
-
-      /* Liquid glass background */
-      .liquid-bg {
-        position: relative;
-        overflow: hidden;
-        isolation: isolate;
-        background: rgba(0, 0, 0, var(--glass-alpha));
-        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
-        backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
       }
     </style>
   </head>

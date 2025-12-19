@@ -496,7 +496,7 @@ export default function App() {
     const onMouseDown = async (e: MouseEvent) => {
       const t = e.target as HTMLElement | null
       if (!t) return
-      if (t.closest('button, input, textarea, a, [data-tauri-drag-region=\"false\"]')) return
+      if (t.closest('button, input, textarea, a, [data-tauri-drag-region="false"]')) return
       try {
         await getCurrentWindow().startDragging()
       } catch {
@@ -507,7 +507,7 @@ export default function App() {
     return () => el.removeEventListener('mousedown', onMouseDown)
   }, [])
 
-  const highlightColor = '#FF5000'
+  const highlightColor = '#55B2F9'
   const progressColor = '#22c55e'
   const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -524,7 +524,7 @@ export default function App() {
     <div ref={containerRef} className="h-full w-full">
       <div
         ref={scrollRef}
-        className="mx-auto h-full w-full max-w-[1280px] overflow-y-auto px-10 pt-[96px] pb-10 no-scrollbar"
+        className="mx-auto h-full w-full max-w-[1280px] overflow-y-auto px-10 pt-[86px] pb-10 no-scrollbar"
       >
         <div className="flex flex-col gap-6">
         <motion.div {...fadeUp} className="flex items-start justify-between">
@@ -533,7 +533,9 @@ export default function App() {
               <img src={AppIcon} alt="App icon" className="h-10 w-10" draggable={false} />
             </div>
           <div>
-              <div className="text-4xl font-black tracking-tight">SVG → PNG</div>
+              <div className="text-4xl font-black tracking-tight bg-gradient-to-r from-[#55B2F9] via-[#1E4F9E] to-[#55B2F9] bg-clip-text text-transparent">
+                SVG → PNG
+              </div>
               <div className="mt-1 text-sm text-white/50">Local conversion, Zero data leakage, Guaranteed security</div>
             </div>
           </div>
@@ -811,7 +813,7 @@ export default function App() {
               )}
 
               {sizeValidationError ? (
-                <div className="flex items-start gap-2 rounded-md border bg-white/5 p-3 text-sm">
+                <div className="flex items-start gap-2 rounded-md bg-white/5 p-3 text-sm">
                   <XCircle className={`mt-0.5 h-4 w-4 ${btnIconWiggle}`} style={{ color: highlightColor }} />
                   <div style={{ color: highlightColor }} className="font-semibold">
                     {sizeValidationError}
@@ -844,22 +846,22 @@ export default function App() {
             </Button>
             </CardHeader>
             <CardContent className="space-y-4">
-            <Button
-              className={[
-                'h-16 w-full text-lg font-semibold',
-                canConvert
-                  ? 'bg-[#FF5000] text-white hover:bg-[#FF5000]/90'
-                  : 'bg-white/10 text-white/45 hover:bg-white/10',
-              ].join(' ')}
-              disabled={!canConvert}
-              onClick={startConvert}
-            >
-               <WandSparkleIcon className="h-5 w-5" active={canConvert || isConverting} />
-              {isConverting ? 'Converting…' : 'Convert'}
+            <div className={canConvert ? 'cta-pill-wrap w-full' : 'w-full'}>
+              {canConvert ? (
+                <button className="cta-plain cta-pill transition-opacity" disabled={!canConvert} onClick={startConvert} type="button">
+                  <WandSparkleIcon className="h-5 w-5" active={canConvert || isConverting} />
+                  {isConverting ? 'Converting…' : 'Convert'}
+                </button>
+              ) : (
+                <Button className="h-16 w-full text-lg font-semibold bg-white/10 text-white/45 hover:bg-white/10" disabled>
+                  <WandSparkleIcon className="h-5 w-5" active={false} />
+                  Convert
                 </Button>
+              )}
+            </div>
 
             {progress ? (
-              <div className="rounded-md border bg-white/5 p-4 text-sm">
+              <div className="rounded-md bg-white/5 p-4 text-sm">
                 <div className="flex items-center justify-between">
                   <div className="font-semibold">
                     Phase: <span style={{ color: highlightColor }}>{progress.phase}</span>
@@ -884,7 +886,7 @@ export default function App() {
             ) : null}
 
             {items.length ? (
-              <div className="max-h-44 overflow-auto rounded-md border bg-black/20 p-3 text-xs no-scrollbar">
+              <div className="max-h-44 overflow-auto rounded-md bg-black/20 p-3 text-xs no-scrollbar">
                 <div className="space-y-3">
                   {runs.map((run) => {
                     const runItems = items.filter((it) => it.runId === run.id).slice().reverse()

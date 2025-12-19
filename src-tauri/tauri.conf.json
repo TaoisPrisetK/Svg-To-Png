@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "SVG_To_PNG",
   "version": "0.1.0",
-  "identifier": "com.ks10.svg_to_png",
+  "identifier": "com.ks10.svg-to-png",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
@@ -16,7 +16,7 @@
         "label": "main",
         "title": "SVG → PNG",
         "width": 1240,
-        "height": 850,
+        "height": 830,
         "transparent": true,
         "titleBarStyle": "Overlay",
         "hiddenTitle": true,

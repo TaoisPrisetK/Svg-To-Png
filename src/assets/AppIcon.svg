@@ -1,9 +1,17 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <!-- flat/filled icon -->
-  <rect x="8" y="10" width="22" height="26" rx="7" fill="rgba(255,255,255,0.20)" stroke="rgba(255,255,255,0.65)" stroke-width="2.5"/>
-  <rect x="34" y="28" width="22" height="26" rx="7" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.60)" stroke-width="2.5"/>
-  <path d="M30.5 23h7.2" stroke="#FF5000" stroke-width="3.2" stroke-linecap="round"/>
-  <path d="M35.3 18.8l4.6 4.2-4.6 4.2" fill="none" stroke="#FF5000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- SVG → PNG mark (transparent, for in-app UI) -->
+  <rect x="10" y="12" width="22" height="26" rx="7" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.60)" stroke-width="2.5" />
+  <rect x="32" y="26" width="22" height="26" rx="7" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.52)" stroke-width="2.5" />
+
+  <path d="M30 24h7.6" stroke="url(#arrow)" stroke-width="3.2" stroke-linecap="round" />
+  <path d="M35.1 19.7l4.9 4.3-4.9 4.3" stroke="url(#arrow)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <defs>
+    <linearGradient id="arrow" x1="30" y1="24" x2="40.5" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55B2F9" />
+      <stop offset="1" stop-color="#1E4F9E" />
+    </linearGradient>
+  </defs>
 </svg>
 
 
