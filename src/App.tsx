@@ -3,7 +3,7 @@ import { listen } from '@tauri-apps/api/event'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrentWindow } from '@tauri-apps/api/window'
 import { open } from '@tauri-apps/plugin-dialog'
-import { Link2, Link2Off, Play, Settings2, Wand2, XCircle } from 'lucide-react'
+import { Link2, Link2Off, Play, Settings2, XCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 import { Button } from '@/components/ui/button'
@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input'
 import AppIcon from '@/assets/AppIcon.svg'
 import { HoverFolderIcon } from '@/components/icons/HoverFolderIcon'
 import { HoverImageMoonIcon } from '@/components/icons/HoverImageMoonIcon'
+import { WandSparkleIcon } from '@/components/icons/WandSparkleIcon'
 
 type InputMode = 'file' | 'folder'
 type SizeMode = 'scale' | 'exact'
@@ -197,8 +198,6 @@ export default function App() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const lastLoadedBaseKeyRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
-  const initialViewportRef = useRef<{ w: number; h: number } | null>(null)
-  const [hasResized, setHasResized] = useState(false)
 
   const outputSizePreview = useMemo(() => {
     const sizes =
@@ -508,31 +507,6 @@ export default function App() {
     return () => el.removeEventListener('mousedown', onMouseDown)
   }, [])
 
-  // Layout rule:
-  // - On initial open: align to bottom so Run's bottom padding matches side padding (pb-10 == px-10 system).
-  // - After ANY window resize: keep all content vertically centered.
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-
-    const ro = new ResizeObserver(() => {
-      const w = el.clientWidth
-      const h = el.clientHeight
-      if (!initialViewportRef.current) {
-        initialViewportRef.current = { w, h }
-        return
-      }
-      const init = initialViewportRef.current
-      // Treat any meaningful change as "user resized".
-      if (!hasResized && (Math.abs(w - init.w) > 2 || Math.abs(h - init.h) > 2)) {
-        setHasResized(true)
-      }
-    })
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [hasResized])
-
-
   const highlightColor = '#FF5000'
   const progressColor = '#22c55e'
   const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -548,8 +522,11 @@ export default function App() {
 
   return (
     <div ref={containerRef} className="h-full w-full">
-      <div ref={scrollRef} className="mx-auto h-full w-full max-w-[1280px] overflow-y-auto px-10 pt-[32px] pb-10 no-scrollbar">
-        <div className={['flex min-h-full flex-col gap-6', hasResized ? 'justify-center' : 'justify-end'].join(' ')}>
+      <div
+        ref={scrollRef}
+        className="mx-auto h-full w-full max-w-[1280px] overflow-y-auto px-10 pt-[96px] pb-10 no-scrollbar"
+      >
+        <div className="flex flex-col gap-6">
         <motion.div {...fadeUp} className="flex items-start justify-between">
           <div className="flex items-center gap-4">
             <div className="rounded-2xl bg-white/5 p-3">
@@ -596,7 +573,7 @@ export default function App() {
           </div>
         </motion.div>
 
-        <motion.div {...fadeUpDelayed(0.14)} className="mt-[20px] grid w-full grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+        <motion.div {...fadeUpDelayed(0.14)} className="mt-5 grid w-full grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
           <div className="h-full">
             <Card className="h-full flex flex-col bg-white/[0.03]">
               <CardHeader className="pb-12">
@@ -877,7 +854,7 @@ export default function App() {
               disabled={!canConvert}
               onClick={startConvert}
             >
-              <Wand2 className={`h-5 w-5 ${btnIconWiggle}`} />
+               <WandSparkleIcon className="h-5 w-5" active={canConvert || isConverting} />
               {isConverting ? 'Converting…' : 'Convert'}
                 </Button>
 
@@ -943,5 +920,3 @@ export default function App() {
     </div>
   )
 }
-
-

@@ -11,8 +11,9 @@ pub fn run() {
         // Force a consistent startup window size (avoid macOS restore geometry surprises).
         let _ = win.set_size(tauri::Size::Logical(tauri::LogicalSize::<f64> {
           width: 1240.0,
-          height: 824.0,
+          height: 850.0,
         }));
+        let _ = win.set_resizable(false);
         let _ = win.center();
 
         // Best-effort: apply a vibrancy style on macOS so the desktop can show through.

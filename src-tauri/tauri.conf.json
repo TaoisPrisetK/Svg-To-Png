@@ -16,13 +16,11 @@
         "label": "main",
         "title": "SVG → PNG",
         "width": 1240,
-        "height": 824,
-        "minWidth": 1100,
-        "minHeight": 720,
+        "height": 850,
         "transparent": true,
         "titleBarStyle": "Overlay",
         "hiddenTitle": true,
-        "resizable": true
+        "resizable": false
       }
     ],
     "security": {

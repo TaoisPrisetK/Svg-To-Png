@@ -28,7 +28,7 @@
         width: 100%;
       }
 
-      /* Inline a minimal liquid glass background to prevent "dark → bright" jump on refresh */
+      /* Liquid glass background */
       .liquid-bg {
         position: relative;
         overflow: hidden;
@@ -37,52 +37,6 @@
         -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
         backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
       }
-      .liquid-bg::before {
-        content: "";
-        position: absolute;
-        inset: -80px;
-        z-index: -1;
-        background:
-          radial-gradient(1200px 900px at 18% 22%, rgba(185,185,185,0.11) 0%, rgba(185,185,185,0.045) 55%, rgba(185,185,185,0) 88%),
-          radial-gradient(1100px 820px at 78% 18%, rgba(165,165,165,0.10) 0%, rgba(165,165,165,0.040) 58%, rgba(165,165,165,0) 90%),
-          radial-gradient(1000px 860px at 62% 88%, rgba(200,200,200,0.09) 0%, rgba(200,200,200,0.035) 60%, rgba(200,200,200,0) 92%),
-          radial-gradient(780px 640px at 28% 82%, rgba(150,150,150,0.07) 0%, rgba(150,150,150,0.028) 62%, rgba(150,150,150,0) 94%),
-          radial-gradient(620px 520px at 90% 64%, rgba(190,190,190,0.06) 0%, rgba(190,190,190,0.022) 64%, rgba(190,190,190,0) 95%);
-        -webkit-filter: blur(46px) saturate(112%) contrast(106%);
-        filter: blur(46px) saturate(112%) contrast(106%);
-        opacity: 0.58;
-        animation: none;
-      }
-      .liquid-bg::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        background:
-          radial-gradient(1200px 800px at 50% 45%, rgba(0,0,0,0.06), rgba(0,0,0,0.42) 78%),
-          repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.02),
-            rgba(255,255,255,0.02) 1px,
-            rgba(0,0,0,0.02) 2px,
-            rgba(0,0,0,0.02) 3px
-          );
-        opacity: 0.16;
-        mix-blend-mode: normal;
-        pointer-events: none;
-      }
-
-      /* Disable background blobs */
-      .liquid-bg::before,
-      .liquid-bg::after {
-        content: none !important;
-        display: none !important;
-      }
-
-      @keyframes liquid-float {
-        0% { transform: translate3d(-18px, -14px, 0) scale(1.03); }
-        100% { transform: translate3d(18px, 14px, 0) scale(1.06); }
-      }
     </style>
   </head>
   <body>
@@ -90,5 +44,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
-

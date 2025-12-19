@@ -37,7 +37,7 @@
 
     /* Global window background tuning */
     --glass-alpha: 0.34; /* smaller = more transparent */
-    --glass-blur: 28px;  /* bigger = stronger gaussian blur */
+    --glass-blur: 28px; /* bigger = stronger gaussian blur */
     --glass-saturate: 125%;
     --glass-contrast: 108%;
 
@@ -56,7 +56,7 @@
 
   html,
   body {
-    /* Prevent flash during reload: keep base tint consistent with .liquid-bg */
+    /* Prevent flash during reload */
     background: rgba(0, 0, 0, var(--glass-alpha));
     background-color: rgba(0, 0, 0, var(--glass-alpha));
   }
@@ -98,74 +98,73 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
-
-  /* Adjust overall UI background transparency here */
   background: rgba(0, 0, 0, var(--glass-alpha));
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
 }
 
-.liquid-bg::before {
-  content: "";
-  position: absolute;
-  inset: -80px;
-  z-index: -1;
-
-  /* Organic gray mist blobs (softer + less banding) */
-  background:
-    radial-gradient(1200px 900px at 18% 22%, rgba(185,185,185,0.11) 0%, rgba(185,185,185,0.045) 55%, rgba(185,185,185,0) 88%),
-    radial-gradient(1100px 820px at 78% 18%, rgba(165,165,165,0.10) 0%, rgba(165,165,165,0.040) 58%, rgba(165,165,165,0) 90%),
-    radial-gradient(1000px 860px at 62% 88%, rgba(200,200,200,0.09) 0%, rgba(200,200,200,0.035) 60%, rgba(200,200,200,0) 92%),
-    radial-gradient(780px 640px at 28% 82%, rgba(150,150,150,0.07) 0%, rgba(150,150,150,0.028) 62%, rgba(150,150,150,0) 94%),
-    radial-gradient(620px 520px at 90% 64%, rgba(190,190,190,0.06) 0%, rgba(190,190,190,0.022) 64%, rgba(190,190,190,0) 95%);
-
-  filter: blur(46px) saturate(112%) contrast(106%);
-  -webkit-filter: blur(46px) saturate(112%) contrast(106%);
-  opacity: 0.58;
-  /* Keep static for stability (no flashing/pulsing) */
-  animation: none;
-}
-
-.liquid-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-
-  background:
-    radial-gradient(1200px 800px at 50% 45%, rgba(0,0,0,0.06), rgba(0,0,0,0.42) 78%),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.02),
-      rgba(255,255,255,0.02) 1px,
-      rgba(0,0,0,0.02) 2px,
-      rgba(0,0,0,0.02) 3px
-    );
-  opacity: 0.16;
-  mix-blend-mode: normal;
-  pointer-events: none;
-}
-
-/* Disable background blobs */
-.liquid-bg::before,
-.liquid-bg::after {
-  content: none !important;
-  display: none !important;
-}
-
-@keyframes liquid-float {
-  0% { transform: translate3d(-18px, -14px, 0) scale(1.03); }
-  100% { transform: translate3d(18px, 14px, 0) scale(1.06); }
-}
-
 /* Fun hover wiggle for button icons */
 @keyframes icon-wiggle {
-  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-  18%  { transform: translate3d(0, -1px, 0) rotate(-12deg) scale(1.06); }
-  36%  { transform: translate3d(0, 0, 0) rotate(10deg) scale(1.06); }
-  54%  { transform: translate3d(0, -1px, 0) rotate(-8deg) scale(1.05); }
-  72%  { transform: translate3d(0, 0, 0) rotate(6deg) scale(1.03); }
-  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  18% {
+    transform: translate3d(0, -1px, 0) rotate(-12deg) scale(1.06);
+  }
+  36% {
+    transform: translate3d(0, 0, 0) rotate(10deg) scale(1.06);
+  }
+  54% {
+    transform: translate3d(0, -1px, 0) rotate(-8deg) scale(1.05);
+  }
+  72% {
+    transform: translate3d(0, 0, 0) rotate(6deg) scale(1.03);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+/* CTA wand sparkles: grow + 360° rotate -> fade out -> fade in with reverse rotate -> loop */
+@keyframes sparkle-pulse {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  18% {
+    transform: scale(1.45) rotate(180deg);
+    opacity: 0.5;
+  }
+  33% {
+    transform: scale(1.85) rotate(360deg);
+    opacity: 0;
+  }
+  34% {
+    transform: scale(1) rotate(-360deg);
+    opacity: 0;
+  }
+  42% {
+    transform: scale(1) rotate(-300deg);
+    opacity: 0;
+  }
+  58% {
+    transform: scale(1) rotate(-180deg);
+    opacity: 0.5;
+  }
+  78% {
+    transform: scale(1) rotate(-90deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.cta-sparkle-active {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sparkle-pulse 1.5s linear infinite;
 }
 
 
