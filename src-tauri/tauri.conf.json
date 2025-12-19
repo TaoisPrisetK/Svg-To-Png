@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "SVG_To_PNG",
+  "productName": "Tool SVG-To-PNG",
   "version": "0.1.0",
   "identifier": "com.ks10.svg-to-png",
   "build": {
