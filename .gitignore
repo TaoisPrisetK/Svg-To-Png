@@ -29,3 +29,6 @@ src-tauri/target
 *.njsproj
 *.sln
 *.sw?
+
+# Local preview screenshot (do not commit; the repo uses docs/preview.png)
+Preview.png
