@@ -36,7 +36,6 @@ npm run tauri:build
 
 ### Notes
 - This tool runs fully offline.
-- The app icon is generated from an SVG and matches the UI background theme.
 
 ### License
 MIT
