@@ -34,11 +34,12 @@ jobs:
           path: |
             src-tauri/target/release/bundle/msi/*.msi
             src-tauri/target/release/bundle/nsis/*.exe
-          if-no-files-found: warn
+          if-no-files-found: ignore
 
   build-macos:
     name: Build macOS
     runs-on: macos-latest
+    continue-on-error: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -64,11 +65,12 @@ jobs:
           path: |
             src-tauri/target/release/bundle/macos/*.app
             src-tauri/target/release/bundle/dmg/*.dmg
-          if-no-files-found: warn
+          if-no-files-found: ignore
 
   release:
     name: Create Release
     needs: [build-windows, build-macos]
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -78,11 +80,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: windows
+          if-no-files-found: ignore
 
       - name: Download macOS artifacts
         uses: actions/download-artifact@v4
         with:
           name: macos
+          if-no-files-found: ignore
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
