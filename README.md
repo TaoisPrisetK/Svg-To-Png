@@ -18,9 +18,9 @@ No uploads — your files never leave your computer.
 ### Download
 | Platform | File | Direct download |
 | --- | --- | --- |
-| Windows (x64) | `SVG To PNG_Windows_x64_Setup.exe` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/SVG%20To%20PNG_Windows_x64_Setup.exe) |
-| Windows (x64) | `SVG To PNG_Windows_x64.msi` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/SVG%20To%20PNG_Windows_x64.msi) |
-| macOS | `SVG To PNG_macOS_aarch64.dmg` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/SVG%20To%20PNG_macOS_aarch64.dmg) |
+| Windows (x64) | `SvgToPng_Windows_x64_Setup.exe` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/SvgToPng_Windows_x64_Setup.exe) |
+| Windows (x64) | `SvgToPng_Windows_x64.msi` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/SvgToPng_Windows_x64.msi) |
+| macOS | `SvgToPng_macOS_aarch64.dmg` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/SvgToPng_macOS_aarch64.dmg) |
 
 If the direct link ever returns 404, use: [Releases (latest)](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest)
 
