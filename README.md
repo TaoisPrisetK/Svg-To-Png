@@ -18,7 +18,7 @@ No uploads — your files never leave your computer.
 ### Download
 | Platform | File | Direct download |
 | --- | --- | --- |
-| Windows (x64) | `Tool.SVG-To-PNG_*.msi` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest) |
+| Windows (x64) | `Tool.SVG-To-PNG_*.exe` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest) |
 | macOS (Apple Silicon / aarch64) | `Tool.SVG-To-PNG_*.dmg` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest) |
 
 If the direct link ever returns 404, use: [Releases (latest)](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest)
