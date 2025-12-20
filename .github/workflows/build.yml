@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build-windows:
     name: Build Windows
@@ -78,15 +81,15 @@ jobs:
 
       - name: Download Windows artifacts
         uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
           name: windows
-          if-no-files-found: ignore
 
       - name: Download macOS artifacts
         uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
           name: macos
-          if-no-files-found: ignore
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -94,6 +97,7 @@ jobs:
           files: |
             windows/**/*
             macos/**/*
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
