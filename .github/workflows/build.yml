@@ -50,7 +50,6 @@ jobs:
   build-macos:
     name: Build macOS
     runs-on: macos-latest
-    continue-on-error: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -72,16 +71,14 @@ jobs:
       - name: Collect macOS artifacts (stable names)
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
           mkdir -p artifacts
           dmg="$(ls -1 src-tauri/target/release/bundle/dmg/*.dmg 2>/dev/null | head -n 1 || true)"
           if [[ -n "${dmg}" ]]; then
             cp -f "${dmg}" "artifacts/Tool.SVG-To-PNG_macOS_aarch64.dmg"
-          fi
-          app="$(ls -1 src-tauri/target/release/bundle/macos/*.app 2>/dev/null | head -n 1 || true)"
-          if [[ -n "${app}" ]]; then
-            # Zip the .app properly (keeps bundle structure/resources)
-            ditto -c -k --sequesterRsrc --keepParent "${app}" "artifacts/Tool.SVG-To-PNG_macOS.app.zip"
+            echo "Collected dmg: ${dmg}"
+          else
+            echo "No dmg found at src-tauri/target/release/bundle/dmg/*.dmg"
           fi
 
       - name: Upload macOS artifacts
