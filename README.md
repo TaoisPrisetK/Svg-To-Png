@@ -15,10 +15,11 @@ No uploads — your files never leave your computer.
 ### Screenshot
 ![Tool SVG-To-PNG UI](docs/preview.png)
 
-### Download (macOS)
+### Download
 | Platform | File | Direct download |
 | --- | --- | --- |
-| macOS (Apple Silicon / aarch64) | `Tool.SVG-To-PNG_0.1.0_aarch64.dmg` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest/download/Tool.SVG-To-PNG_0.1.0_aarch64.dmg) |
+| Windows (x64) | `Tool.SVG-To-PNG_*.msi` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest) |
+| macOS (Apple Silicon / aarch64) | `Tool.SVG-To-PNG_*.dmg` | [Download](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest) |
 
 If the direct link ever returns 404, use: [Releases (latest)](https://github.com/TaoisPrisetK/Svg-To-Png/releases/latest)
 
