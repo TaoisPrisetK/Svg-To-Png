@@ -35,9 +35,9 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path artifacts | Out-Null
           $exe = Get-ChildItem src-tauri/target/release/bundle/nsis -Filter *.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-          if ($exe) { Copy-Item $exe.FullName artifacts/Tool.SVG-To-PNG_Windows_x64_Setup.exe -Force }
+          if ($exe) { Copy-Item $exe.FullName "artifacts/SVG To PNG_Windows_x64_Setup.exe" -Force }
           $msi = Get-ChildItem src-tauri/target/release/bundle/msi -Filter *.msi -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-          if ($msi) { Copy-Item $msi.FullName artifacts/Tool.SVG-To-PNG_Windows_x64.msi -Force }
+          if ($msi) { Copy-Item $msi.FullName "artifacts/SVG To PNG_Windows_x64.msi" -Force }
 
       - name: Upload Windows artifacts
         uses: actions/upload-artifact@v4
@@ -75,7 +75,7 @@ jobs:
           mkdir -p artifacts
           dmg="$(ls -1 src-tauri/target/release/bundle/dmg/*.dmg 2>/dev/null | head -n 1 || true)"
           if [[ -n "${dmg}" ]]; then
-            cp -f "${dmg}" "artifacts/Tool.SVG-To-PNG_macOS_aarch64.dmg"
+            cp -f "${dmg}" "artifacts/SVG To PNG_macOS_aarch64.dmg"
             echo "Collected dmg: ${dmg}"
           else
             echo "No dmg found at src-tauri/target/release/bundle/dmg/*.dmg"
